@@ -1198,7 +1198,7 @@
                     const totalFlete = datosExcel.reduce((sum, flete) => sum + (parseFloat(flete['Precio Flete']) || 0), 0);
                     const totalCargueDescargue = datosExcel.reduce((sum, flete) => sum + (parseFloat(flete['Cargue/Descargue']) || 0), 0);
                     const totalGeneral = totalFlete + totalCargueDescargue;
-                    const totalGeneralConIVA = totalGeneral/ 0.88;
+                    const totalGeneralConIVA = totalGeneral / 0.88;
                     
                     datosExcel.push({
                         'Item': '',
