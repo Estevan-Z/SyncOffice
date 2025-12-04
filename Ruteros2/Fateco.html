@@ -1004,7 +1004,7 @@
                     const totalFlete = fletesFiltrados.reduce((sum, flete) => sum + (parseFloat(flete.precio) || 0), 0);
                     const totalCargueDescargue = fletesFiltrados.reduce((sum, flete) => sum + (flete.cajas * 1000), 0);
                     const totalGeneral = totalFlete + totalCargueDescargue;
-                    const totalGeneralConIVA = totalGeneral * 1.12;
+                    const totalGeneralConIVA = totalGeneral / 0.88;
 
                     const totalRow = document.querySelector('.total-row');
                     totalRow.style.display = '';
@@ -1171,7 +1171,7 @@
                     const datosExcel = filtrarFletes().map(flete => {
                         const cargueDescargue = flete.cajas * 1000;
                         const valorTotal = (parseFloat(flete.precio) || 0) + cargueDescargue;
-                        const totalConIVA = valorTotal * 1.12;
+                        const totalConIVA = valorTotal / 0.88;
                         
                         return {
                             'Item': fletes.indexOf(flete) + 1,
@@ -1196,7 +1196,7 @@
                     const totalFlete = datosExcel.reduce((sum, flete) => sum + (parseFloat(flete['Precio Flete']) || 0), 0);
                     const totalCargueDescargue = datosExcel.reduce((sum, flete) => sum + (parseFloat(flete['Cargue/Descargue']) || 0), 0);
                     const totalGeneral = totalFlete + totalCargueDescargue;
-                    const totalGeneralConIVA = totalGeneral * 1.12;
+                    const totalGeneralConIVA = totalGeneral / 0.88;
                     
                     datosExcel.push({
                         'Item': '',
