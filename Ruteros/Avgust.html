@@ -1355,7 +1355,7 @@
                         // Calcular cargue y descargue (1000 por caja)
                         const cargueDescargue = flete.cajas * 1000;
                         const valorTotal = (parseFloat(flete.precio) || 0) + cargueDescargue;
-                        const totalConIVA = valorTotal * 1.12; // Añadir 12%
+                        const totalConIVA = valorTotal / 0.88; // Añadir 12%
                         
                         // Encontrar el índice real en el array original para las acciones de editar/eliminar
                         const originalIndex = fletes.findIndex(item => 
