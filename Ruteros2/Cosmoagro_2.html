@@ -1007,7 +1007,7 @@
                     const totalFlete = fletesFiltrados.reduce((sum, flete) => sum + (parseFloat(flete.precio) || 0), 0);
                     const totalCargueDescargue = fletesFiltrados.reduce((sum, flete) => sum + (flete.cajas * 1000), 0);
                     const totalGeneral = totalFlete + totalCargueDescargue;
-                    const totalGeneralConIVA = totalGeneral * 1.12;
+                    const totalGeneralConIVA = totalGeneral / 0.88;
 
                     const totalRow = document.querySelector('.total-row');
                     totalRow.style.display = '';
