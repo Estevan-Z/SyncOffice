@@ -1781,6 +1781,7 @@
                         const totalFinal = precioConAjuste + valorCargue + valorDescargue;
                         
                         return {
+                            'Transportador': flete.transportador,
                             'N° Documento': flete.documento,
                             'Peso (kg)': flete.peso || 0,
                             'Fecha': formatearFecha(flete.fecha),
@@ -1807,6 +1808,7 @@
                     const totalFinal = datosExcel.reduce((sum, item) => sum + (parseFloat(item['Total Final']) || 0), 0);
                     
                     datosExcel.push({
+                        'Transportador': '',
                         'N° Documento': '',
                         'Peso (kg)': '',
                         'Fecha': '',
