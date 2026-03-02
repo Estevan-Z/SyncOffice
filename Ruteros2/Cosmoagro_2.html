@@ -21,9 +21,9 @@
         /* Estilos para el formulario */
         #fletes-table {
             width: 100%;
-            min-width: 1300px; /* Aumentamos el ancho mínimo para las nuevas columnas */
+            min-width: 1500px;
             border-collapse: collapse;
-            white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+            white-space: nowrap;
         }
 
         .form-columns {
@@ -190,7 +190,6 @@
             background: linear-gradient(135deg, #1b5e20, #2e7d32);
         }
 
-        /* Estilo para el botón de vaciar tabla */
         .clear-btn {
             background: linear-gradient(135deg, #f72585, #b5179e);
             color: white;
@@ -238,7 +237,6 @@
                 left: 0;
                 top: 0;
                 width: 100%;
-                height: 10%;
                 margin: 0;
                 padding: 10mm;
                 box-sizing: border-box;
@@ -391,7 +389,7 @@
         }
         
         .total-value {
-            color: var(--primary);
+            color: #4361ee;
             font-size: 1.1rem;
         }
         
@@ -402,7 +400,7 @@
             transform: translateX(-50%);
             padding: 1rem 2rem;
             background: white;
-            color: var(--dark);
+            color: #333;
             border-radius: 50px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.15);
             display: flex;
@@ -476,8 +474,8 @@
 
         /* Estilos para la columna de estado */
         .status-pendiente {
-            background-color: #ffebee; /* Rojo claro */
-            color: #c62828; /* Rojo oscuro */
+            background-color: #ffebee;
+            color: #c62828;
             font-weight: bold;
             text-align: center;
             border-radius: 4px;
@@ -485,8 +483,8 @@
         }
 
         .status-revisando {
-            background-color: #fff3e0; /* Naranja claro */
-            color: #e65100; /* Naranja oscuro */
+            background-color: #fff3e0;
+            color: #e65100;
             font-weight: bold;
             text-align: center;
             border-radius: 4px;
@@ -494,8 +492,8 @@
         }
 
         .status-entregado {
-            background-color: #e8f5e9; /* Verde claro */
-            color: #2e7d32; /* Verde oscuro */
+            background-color: #e8f5e9;
+            color: #2e7d32;
             font-weight: bold;
             text-align: center;
             border-radius: 4px;
@@ -526,6 +524,36 @@
             background-color: #e8f5e9;
             color: #2e7d32;
         }
+
+        /* Estilos para los checkboxes de cargue y descargue */
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .checkbox-item label i {
+            color: #4361ee;
+            margin-right: 4px;
+        }
     </style>
 </head>
 <body>
@@ -543,7 +571,7 @@
             <div class="form-container">
                 <h2 class="form-title"><i class="fas fa-plus-circle"></i> Nuevo Rutero</h2>
                 <form id="flete-form">
-                    <!-- Primera -->
+                    <!-- Primera fila -->
                     <div class="form-columns">
                         <!-- Grupo 1: Información básica -->
                         <div class="field-group">
@@ -575,7 +603,7 @@
                             </div>
                         </div>
                         
-                        <!-- Grupo 2: Origen y carga -->
+                        <!-- Grupo 2: Origen y destino -->
                         <div class="field-group">
                             <h3 class="field-group-title">
                                 <i class="fas fa-warehouse"></i> Origen y Destino
@@ -637,15 +665,15 @@
                                     <option value="Emprenorte Sa">Emprenorte Sa</option>
                                     <option value="Estacion Agricola">Estacion Agricola</option>
                                     <option value="Inv. Agrofertil del Tolima">Inv. Agrofertil del Tolima</option>
-                                    <option value="Inv. Agropecuarias Doima">Inv. Agropecuarias Doima</option>
                                     <option value="Inv. Molino Pacande">Inv. Molino Pacande</option>
+                                    <option value="Inv. Agropecuarias Doima">Inv. Agropecuarias Doima</option>
                                     <option value="Juan Felipe Saucedo Giron">Juan Felipe Saucedo Giron</option>
-                                    <option value="Juan Jose Velez Lopez">Juan Jose Velez Lopez</option>"
+                                    <option value="Juan Jose Velez Lopez">Juan Jose Velez Lopez</option>
                                     <option value="Laserna">Laserna</option>
                                     <option value="Magda Rocio Ruiz Molano">Magda Rocio Ruiz Molano</option>
                                     <option value="Marquez y Asociados">Marquez y Asociados</option>
                                     <option value="Meniagro">Meniagro</option>
-                                    <option value="Oconos">Ocobos</option>
+                                    <option value="Ocobos">Ocobos</option>
                                     <option value="Orf">Orf</option>
                                     <option value="Procesadora Morango">Procesadora Morango</option>
                                     <option value="Proecologicos">Proecologicos</option>
@@ -661,7 +689,8 @@
                                 </select>
                             </div>
                         </div>
-                        <!-- Grupo 3: Destino -->
+                        
+                        <!-- Grupo 3: Detalles del Flete -->
                         <div class="field-group">
                             <h3 class="field-group-title">
                                 <i class="fas fa-truck"></i> Detalles del Flete
@@ -680,6 +709,24 @@
                                     <span class="input-symbol">$</span>
                                     <input type="number" id="precio" placeholder="0 si no aplica" min="0" value="0">
                                 </div>
+                            </div>
+                            
+                            <!-- Campos de Cargue y Descargue SEPARADOS -->
+                            <div class="form-group">
+                                <label><i class="fas fa-truck-loading"></i> Servicios de Cargue/Descargue:</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="cargue" checked>
+                                        <label for="cargue"><i class="fas fa-arrow-up"></i> Cargue ($700/unidad)</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="descargue" checked>
+                                        <label for="descargue"><i class="fas fa-arrow-down"></i> Descargue ($700/unidad)</label>
+                                    </div>
+                                </div>
+                                <small style="color: #666; display: block; margin-top: 5px;">
+                                    <i class="fas fa-info-circle"></i> El costo se calcula automáticamente según el número de cajas
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -726,7 +773,7 @@
                 </button>
             </div>
 
-            <!-- Tabla de fletes -->
+            <!-- Tabla de fletes - CON CARGUE Y DESCARGUE SEPARADOS -->
             <div class="table-container">
                 <table id="fletes-table">
                     <thead>
@@ -735,16 +782,17 @@
                             <th><i class="fas fa-check-circle"></i> Estado</th>
                             <th><i class="far fa-calendar-alt"></i> Fecha</th>
                             <th><i class="fas fa-file-alt"></i> Documento</th>
-                            <th><i class="fas fa-building"></i> Transportador</th>
+                            <th><i class="fas fa-user-tie"></i> Transportador</th>
                             <th><i class="fas fa-map-marker-alt"></i> Origen</th>
                             <th><i class="fas fa-map-marker-alt"></i> Destino</th>
                             <th><i class="fas fa-user"></i> Cliente</th>
                             <th><i class="fas fa-box"></i> Cajas</th>
                             <th><i class="fas fa-box"></i> Domicilios</th>
-                            <th><i class="fas fa-dollar-sign"></i> Precio Flete</th>
-                            <th><i class="fas fa-truck-loading"></i> Cargue/Descargue</th>
-                            <th><i class="fas fa-calculator"></i> Valor Total</th>
-                            <th><i class="fas fa-calculator"></i> Total (+12%)</th>
+                            <th><i class="fas fa-dollar-sign"></i> Precio Original</th>
+                            <th><i class="fas fa-percent"></i> Precio +17%</th>
+                            <th><i class="fas fa-arrow-up"></i> Cargue</th>
+                            <th><i class="fas fa-arrow-down"></i> Descargue</th>
+                            <th><i class="fas fa-calculator"></i> Total Final</th>
                             <th><i class="fas fa-clipboard-check"></i> Detalles</th>
                             <th>Acciones</th>
                         </tr>
@@ -754,7 +802,8 @@
                     </tbody>
                     <tfoot>
                         <tr class="total-row">
-                            <td colspan="9" class="total-label">TOTAL:</td>
+                            <td colspan="10" class="total-label">TOTALES:</td>
+                            <td class="total-value">$0</td>
                             <td class="total-value">$0</td>
                             <td class="total-value">$0</td>
                             <td class="total-value">$0</td>
@@ -768,19 +817,22 @@
 
             <!-- Sección para impresión (oculta inicialmente) -->
             <div id="print-section" class="print-section">
-                <h2 style="text-align: center;">Corte de Fletes Avgust</h2>
+                <h2 style="text-align: center;">Reporte de Fletes - Cosmoagro</h2>
                 
                 <table id="print-fletes-table">
                     <thead>
                         <tr>
                             <th>Fecha</th>
                             <th>Documento</th>
+                            <th>Transportador</th>
                             <th>Origen</th>
                             <th>Destino</th>
                             <th>Cliente</th>
                             <th>Cajas</th>
-                            <th>Domicilios</th>
-                            <th>Precio</th>
+                            <th>Precio +17%</th>
+                            <th>Cargue</th>
+                            <th>Descargue</th>
+                            <th>Total</th>
                             <th>Detalles</th>
                         </tr>
                     </thead>
@@ -789,9 +841,12 @@
                     </tbody>
                     <tfoot>
                         <tr class="total-row">
-                            <td colspan="" style="text-align: right; font-weight: bold;">TOTAL:</td>
-                            <td colspan="" style="font-weight: bold;" id="print-total-value">$0</td>
-                            
+                            <td colspan="7" style="text-align: right; font-weight: bold;">TOTAL:</td>
+                            <td style="font-weight: bold;" id="print-total-precio">$0</td>
+                            <td style="font-weight: bold;" id="print-total-cargue">$0</td>
+                            <td style="font-weight: bold;" id="print-total-descargue">$0</td>
+                            <td style="font-weight: bold;" id="print-total-general">$0</td>
+                            <td></td>
                         </tr>
                     </tfoot>    
                 </table>
@@ -803,7 +858,7 @@
         </footer>
     </div>
     
-    <!-- Script JavaScript -->
+    <!-- Script JavaScript ACTUALIZADO -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             if (document.querySelector('.form-container')) {
@@ -815,11 +870,15 @@
                 let fleteEditando = null;
                 let searchTerm = '';
 
+                // Función para redondear SOLO el campo Precio +17% a millares (000)
+                function redondearPrecio(valor) {
+                    return Math.round(valor / 1000) * 1000;
+                }
+
                 // Función para obtener la fecha en zona horaria de Colombia (UTC-5)
                 function obtenerFechaColombia(fechaStr) {
                     const fecha = new Date(fechaStr);
-                    // Ajustar a zona horaria de Colombia (UTC-5)
-                    const offset = fecha.getTimezoneOffset() + 300; // 300 minutos = 5 horas (UTC-5)
+                    const offset = fecha.getTimezoneOffset() + 300;
                     return new Date(fecha.getTime() + offset * 60000);
                 }
 
@@ -852,36 +911,22 @@
                     return formatearMoneda(precio);
                 }
 
-                // Función para obtener la clase CSS según el estado
-                function getStatusClass(estado) {
-                    switch(estado) {
-                        case 'pendiente': return 'status-pendiente';
-                        case 'revisando': return 'status-revisando';
-                        case 'entregado': return 'status-entregado';
-                        default: return '';
-                    }
-                }
-
                 // Función para ordenar los fletes automáticamente por fecha y documento
                 function ordenarFletes() {
                     fletes.sort((a, b) => {
-                        // Primero ordenar por fecha (más antiguos primero)
                         const dateA = new Date(a.fecha);
                         const dateB = new Date(b.fecha);
                         const dateComparison = dateA - dateB;
                         
-                        // Si las fechas son diferentes, retornar el resultado
                         if (dateComparison !== 0) return dateComparison;
                         
-                        // Si las fechas son iguales, ordenar por documento
                         const numA = !isNaN(a.documento) ? parseInt(a.documento) : a.documento;
                         const numB = !isNaN(b.documento) ? parseInt(b.documento) : b.documento;
                         
                         if (typeof numA === 'number' && typeof numB === 'number') {
-                            return numA - numB; // Orden numérico ascendente
+                            return numA - numB;
                         }
                         
-                        // Si no son numéricos, ordenar alfabéticamente
                         return a.documento.toString().localeCompare(b.documento.toString());
                     });
                 }
@@ -904,12 +949,12 @@
                 }
 
                 function renderizarTabla() {
-                    ordenarFletes(); // Ordenar automáticamente antes de renderizar
+                    ordenarFletes();
                     
                     const fletesFiltrados = filtrarFletes();
                     tablaBody.innerHTML = '';
                     const printTablaBody = document.querySelector('#print-fletes-table tbody');
-                    printTablaBody.innerHTML = '';
+                    if (printTablaBody) printTablaBody.innerHTML = '';
                     
                     if (fletesFiltrados.length === 0) {
                         const noResultsText = searchTerm 
@@ -918,32 +963,40 @@
                         
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                            <td colspan="17" class="no-results">
+                            <td colspan="18" class="no-results">
                                 <i class="fas fa-${searchTerm ? 'search' : 'inbox'}"></i>
                                 <p>${noResultsText}</p>
                             </td>
                         `;
                         tablaBody.appendChild(tr);
                         
-                        const printTr = document.createElement('tr');
-                        printTr.innerHTML = `
-                            <td colspan="17" style="text-align: center; padding: 2rem; color: #555; font-style: italic;">
-                                ${noResultsText}
-                            </td>
-                        `;
-                        printTablaBody.appendChild(printTr);
+                        if (printTablaBody) {
+                            const printTr = document.createElement('tr');
+                            printTr.innerHTML = `
+                                <td colspan="12" style="text-align: center; padding: 2rem; color: #555; font-style: italic;">
+                                    ${noResultsText}
+                                </td>
+                            `;
+                            printTablaBody.appendChild(printTr);
+                        }
                         
-                        document.querySelector('.total-row').style.display = 'none';
+                        const totalRow = document.querySelector('.total-row');
+                        if (totalRow) totalRow.style.display = 'none';
                         return;
                     }
                     
                     fletesFiltrados.forEach((flete, index) => {
-                        // Calcular cargue y descargue (1000 por caja)
-                        const cargueDescargue = flete.cajas * 1000;
-                        const valorTotal = (parseFloat(flete.precio) || 0) + cargueDescargue;
-                        const totalConIVA = valorTotal / 0.88; // Añadir 12%
+                        // Calcular precio del flete con el factor 0.83 (agrega 17%) - REDONDEADO A MILLAR
+                        const precioFlete = parseFloat(flete.precio) || 0;
+                        const precioConAjuste = redondearPrecio(precioFlete / 0.83);
                         
-                        // Encontrar el índice real en el array original para las acciones de editar/eliminar
+                        // Calcular cargue y descargue (700 por caja cada uno)
+                        const valorCargue = (flete.cargue !== false ? flete.cajas * 700 : 0);
+                        const valorDescargue = (flete.descargue !== false ? flete.cajas * 700 : 0);
+                        
+                        // Total final = precio con ajuste + cargue + descargue
+                        const totalFinal = precioConAjuste + valorCargue + valorDescargue;
+                        
                         const originalIndex = fletes.findIndex(item => 
                             item.documento === flete.documento && 
                             item.fecha === flete.fecha &&
@@ -956,7 +1009,7 @@
                             <td>
                                 <select class="status-select-table ${flete.estado || 'pendiente'}" 
                                         data-index="${originalIndex}" 
-                                        onchange="this.className='status-select-table '+this.value; actualizarEstado(${originalIndex}, this.value)">
+                                        onchange="this.className='status-select-table '+this.value; window.actualizarEstado(${originalIndex}, this.value)">
                                     <option value="pendiente" ${(flete.estado || 'pendiente') === 'pendiente' ? 'selected' : ''}>Pendiente</option>
                                     <option value="revisando" ${(flete.estado || 'pendiente') === 'revisando' ? 'selected' : ''}>Revisando</option>
                                     <option value="entregado" ${(flete.estado || 'pendiente') === 'entregado' ? 'selected' : ''}>Entregado</option>
@@ -970,11 +1023,11 @@
                             <td>${flete.cliente}</td>
                             <td>${flete.cajas}</td>
                             <td>${flete.domicilios}</td>
-                            <td data-price="${flete.precio}">${formatearPrecioCOP(flete.precio)}</td>
-                            <td>${formatearPrecioCOP(cargueDescargue)}</td>
-                            <td>${formatearPrecioCOP(valorTotal)}</td>
-                            
-                            <td>${formatearPrecioCOP(totalConIVA)}</td>
+                            <td>${formatearPrecioCOP(precioFlete)}</td>
+                            <td>${formatearPrecioCOP(precioConAjuste)}</td>
+                            <td>${formatearPrecioCOP(valorCargue)}</td>
+                            <td>${formatearPrecioCOP(valorDescargue)}</td>
+                            <td>${formatearPrecioCOP(totalFinal)}</td>
                             <td>${flete.observacion || '-'}</td>
                             <td>
                                 <button class="edit-btn" data-index="${originalIndex}">
@@ -987,40 +1040,64 @@
                         `;
                         tablaBody.appendChild(tr);
 
-                        // Agregar también a la tabla de impresión (sin acciones)
-                        const printTr = document.createElement('tr');
-                        printTr.innerHTML = `
-                            <td>${formatearFecha(flete.fecha)}</td>
-                            <td>${flete.documento}</td>
-                            <td>${flete.origen}</td>
-                            <td>${flete.destino}</td>
-                            <td>${flete.cliente}</td>
-                            <td>${flete.cajas}</td>
-                            <td>${flete.domicilios}</td>
-                            <td>${formatearPrecioCOP(totalConIVA)}</td>
-                            <td>${flete.observacion || '-'}</td>
-                        `;
-                        printTablaBody.appendChild(printTr);
+                        // Agregar también a la tabla de impresión
+                        if (printTablaBody) {
+                            const printTr = document.createElement('tr');
+                            printTr.innerHTML = `
+                                <td>${formatearFecha(flete.fecha)}</td>
+                                <td>${flete.documento}</td>
+                                <td>${flete.transportador}</td>
+                                <td>${flete.origen}</td>
+                                <td>${flete.destino}</td>
+                                <td>${flete.cliente}</td>
+                                <td>${flete.cajas}</td>
+                                <td>${formatearPrecioCOP(precioConAjuste)}</td>
+                                <td>${formatearPrecioCOP(valorCargue)}</td>
+                                <td>${formatearPrecioCOP(valorDescargue)}</td>
+                                <td>${formatearPrecioCOP(totalFinal)}</td>
+                                <td>${flete.observacion || '-'}</td>
+                            `;
+                            printTablaBody.appendChild(printTr);
+                        }
                     });
 
                     // Calcular totales
-                    const totalFlete = fletesFiltrados.reduce((sum, flete) => sum + (parseFloat(flete.precio) || 0), 0);
-                    const totalCargueDescargue = fletesFiltrados.reduce((sum, flete) => sum + (flete.cajas * 1000), 0);
-                    const totalGeneral = totalFlete + totalCargueDescargue;
-                    const totalGeneralConIVA = totalGeneral / 0.88;
+                    const totalFleteOriginal = fletesFiltrados.reduce((sum, flete) => sum + (parseFloat(flete.precio) || 0), 0);
+                    const totalPrecioConAjuste = fletesFiltrados.reduce((sum, flete) => {
+                        const precioAjustado = redondearPrecio((parseFloat(flete.precio) || 0) / 0.83);
+                        return sum + precioAjustado;
+                    }, 0);
+                    const totalCargue = fletesFiltrados.reduce((sum, flete) => sum + (flete.cargue !== false ? flete.cajas * 700 : 0), 0);
+                    const totalDescargue = fletesFiltrados.reduce((sum, flete) => sum + (flete.descargue !== false ? flete.cajas * 700 : 0), 0);
+                    const totalGeneral = totalPrecioConAjuste + totalCargue + totalDescargue;
 
                     const totalRow = document.querySelector('.total-row');
-                    totalRow.style.display = '';
-                    totalRow.innerHTML = `
-                        <td colspan="10" class="total-label">TOTALES:</td>
-                        <td class="total-value">${formatearPrecioCOP(totalFlete)}</td>
-                        <td class="total-value">${formatearPrecioCOP(totalCargueDescargue)}</td>
-                        <td class="total-value">${formatearPrecioCOP(totalGeneral)}</td>
-                        <td class="total-value">${formatearPrecioCOP(totalGeneralConIVA)}</td>
-                    `;
+                    if (totalRow) {
+                        totalRow.style.display = '';
+                        totalRow.innerHTML = `
+                            <td colspan="10" class="total-label">TOTALES:</td>
+                            <td class="total-value">${formatearPrecioCOP(totalFleteOriginal)}</td>
+                            <td class="total-value">${formatearPrecioCOP(totalPrecioConAjuste)}</td>
+                            <td class="total-value">${formatearPrecioCOP(totalCargue)}</td>
+                            <td class="total-value">${formatearPrecioCOP(totalDescargue)}</td>
+                            <td class="total-value">${formatearPrecioCOP(totalGeneral)}</td>
+                            <td></td>
+                            <td></td>
+                        `;
+                    }
 
-                    document.getElementById('print-total-value').textContent = formatearPrecioCOP(totalGeneralConIVA);
+                    // Actualizar totales de impresión
+                    const printTotalPrecio = document.getElementById('print-total-precio');
+                    const printTotalCargue = document.getElementById('print-total-cargue');
+                    const printTotalDescargue = document.getElementById('print-total-descargue');
+                    const printTotalGeneral = document.getElementById('print-total-general');
+                    
+                    if (printTotalPrecio) printTotalPrecio.textContent = formatearPrecioCOP(totalPrecioConAjuste);
+                    if (printTotalCargue) printTotalCargue.textContent = formatearPrecioCOP(totalCargue);
+                    if (printTotalDescargue) printTotalDescargue.textContent = formatearPrecioCOP(totalDescargue);
+                    if (printTotalGeneral) printTotalGeneral.textContent = formatearPrecioCOP(totalGeneral);
 
+                    // Event listeners para botones de eliminar
                     document.querySelectorAll('.delete-btn').forEach(btn => {
                         btn.addEventListener('click', function() {
                             const index = parseInt(this.getAttribute('data-index'));
@@ -1052,6 +1129,7 @@
                         });
                     });
 
+                    // Event listeners para botones de editar
                     document.querySelectorAll('.edit-btn').forEach(btn => {
                         btn.addEventListener('click', function() {
                             const index = parseInt(this.getAttribute('data-index'));
@@ -1068,6 +1146,13 @@
                             document.getElementById('domicilios').value = flete.domicilios || 1;
                             document.getElementById('precio').value = flete.precio;
                             document.getElementById('observacion').value = flete.observacion || '';
+                            
+                            if (document.getElementById('cargue')) {
+                                document.getElementById('cargue').checked = flete.cargue !== false;
+                            }
+                            if (document.getElementById('descargue')) {
+                                document.getElementById('descargue').checked = flete.descargue !== false;
+                            }
                             
                             document.querySelector('.submit-btn').innerHTML = `
                                 <i class="fas fa-save"></i> Actualizar Flete
@@ -1107,7 +1192,8 @@
                             fletes = [];
                             localStorage.setItem(`fletes_${conductor}`, JSON.stringify(fletes));
                             searchTerm = '';
-                            document.getElementById('search-input').value = '';
+                            const searchInput = document.getElementById('search-input');
+                            if (searchInput) searchInput.value = '';
                             renderizarTabla();
                             
                             Swal.fire(
@@ -1138,45 +1224,33 @@
                 }
 
                 function imprimirReporte() {
-                    // Mostrar la sección de impresión
                     const printSection = document.getElementById('print-section');
+                    if (!printSection) return;
+                    
                     printSection.style.display = 'block';
                     
-                    // Ajustar dinámicamente el tamaño si es necesario
-                    const contentHeight = printSection.scrollHeight;
-                    const pageHeight = 297; // mm
-                    
-                    if (contentHeight > pageHeight * 3.78) { // Convertir mm a px (aproximadamente)
-                        // Reducir el padding si el contenido es muy grande
-                        printSection.style.padding = '5mm';
-                    }
-                    
-                    // Imprimir después de un pequeño retraso para permitir el renderizado
                     setTimeout(() => {
                         window.print();
-                        // Ocultar nuevamente la sección de impresión
                         printSection.style.display = 'none';
-                        // Restaurar el padding original
-                        printSection.style.padding = '10mm';
                     }, 100);
                 }
 
                 // Event listener para el botón de imprimir
                 document.getElementById('print-btn').addEventListener('click', imprimirReporte);
 
-                // Función para exportar a Excel
+                // Función para exportar a Excel - CON TRANSPORTADOR
                 document.getElementById('excel-btn').addEventListener('click', function() {
-                    // Crear un libro de Excel
                     const wb = XLSX.utils.book_new();
                     
-                    // Obtener los datos directamente del array fletes (no de la tabla HTML)
-                    const datosExcel = filtrarFletes().map(flete => {
-                        const cargueDescargue = flete.cajas * 1000;
-                        const valorTotal = (parseFloat(flete.precio) || 0) + cargueDescargue;
-                        const totalConIVA = valorTotal / 0.88;
+                    const datosExcel = filtrarFletes().map((flete, idx) => {
+                        const precioOriginal = parseFloat(flete.precio) || 0;
+                        const precioConAjuste = redondearPrecio(precioOriginal / 0.83);
+                        const valorCargue = (flete.cargue !== false ? flete.cajas * 700 : 0);
+                        const valorDescargue = (flete.descargue !== false ? flete.cajas * 700 : 0);
+                        const totalFinal = precioConAjuste + valorCargue + valorDescargue;
                         
                         return {
-                            'Item': fletes.indexOf(flete) + 1,
+                            'Item': idx + 1,
                             'Fecha': formatearFecha(flete.fecha),
                             'Documento': flete.documento,
                             'Transportador': flete.transportador,
@@ -1185,20 +1259,21 @@
                             'Cliente': flete.cliente,
                             'Cajas': flete.cajas,
                             'Domicilios': flete.domicilios,
-                            'Precio Flete': flete.precio,
-                            'Cargue/Descargue': cargueDescargue,
-                            'Valor Total': valorTotal,
-                            'Total (+12%)': totalConIVA,
+                            'Precio Original': precioOriginal,
+                            'Precio +17% (Redondeado)': precioConAjuste,
+                            'Cargue ($700)': valorCargue,
+                            'Descargue ($700)': valorDescargue,
+                            'Total Final': totalFinal,
                             'Estado': flete.estado || 'Pendiente',
                             'Detalles': flete.observacion || '-'
                         };
                     });
                     
-                    // Agregar fila de totales
-                    const totalFlete = datosExcel.reduce((sum, flete) => sum + (parseFloat(flete['Precio Flete']) || 0), 0);
-                    const totalCargueDescargue = datosExcel.reduce((sum, flete) => sum + (parseFloat(flete['Cargue/Descargue']) || 0), 0);
-                    const totalGeneral = totalFlete + totalCargueDescargue;
-                    const totalGeneralConIVA = totalGeneral / 0.88;
+                    const totalOriginal = datosExcel.reduce((sum, item) => sum + (parseFloat(item['Precio Original']) || 0), 0);
+                    const totalAjustado = datosExcel.reduce((sum, item) => sum + (parseFloat(item['Precio +17% (Redondeado)']) || 0), 0);
+                    const totalCargue = datosExcel.reduce((sum, item) => sum + (parseFloat(item['Cargue ($700)']) || 0), 0);
+                    const totalDescargue = datosExcel.reduce((sum, item) => sum + (parseFloat(item['Descargue ($700)']) || 0), 0);
+                    const totalFinal = datosExcel.reduce((sum, item) => sum + (parseFloat(item['Total Final']) || 0), 0);
                     
                     datosExcel.push({
                         'Item': '',
@@ -1210,40 +1285,38 @@
                         'Cliente': 'TOTALES:',
                         'Cajas': '',
                         'Domicilios': '',
-                        'Precio Flete': totalFlete,
-                        'Cargue/Descargue': totalCargueDescargue,
-                        'Valor Total': totalGeneral,
-                        'Total (+12%)': totalGeneralConIVA,
+                        'Precio Original': totalOriginal,
+                        'Precio +17% (Redondeado)': totalAjustado,
+                        'Cargue ($700)': totalCargue,
+                        'Descargue ($700)': totalDescargue,
+                        'Total Final': totalFinal,
                         'Estado': '',
                         'Detalles': ''
                     });
 
-                    // Convertir los datos a hoja de cálculo
                     const ws = XLSX.utils.json_to_sheet(datosExcel);
                     
-                    // Configurar ancho de columnas
                     ws['!cols'] = [
                         {wch: 5},   // Item
-                        {wch: 10},  // Fecha
+                        {wch: 12},  // Fecha
                         {wch: 15},  // Documento
                         {wch: 20},  // Transportador
-                        {wch: 25},  // Origen
-                        {wch: 25},  // Destino
-                        {wch: 20},  // Cliente
+                        {wch: 20},  // Origen
+                        {wch: 20},  // Destino
+                        {wch: 25},  // Cliente
                         {wch: 8},   // Cajas
                         {wch: 10},  // Domicilios
-                        {wch: 15},  // Precio Flete
-                        {wch: 15},  // Cargue/Descargue
-                        {wch: 15},  // Valor Total
-                        {wch: 15},  // Total (+12%)
-                        {wch: 15},  // Estado
+                        {wch: 15},  // Precio Original
+                        {wch: 20},  // Precio +17%
+                        {wch: 15},  // Cargue
+                        {wch: 15},  // Descargue
+                        {wch: 15},  // Total Final
+                        {wch: 12},  // Estado
                         {wch: 30}   // Detalles
                     ];
                     
-                    // Agregar la hoja al libro
                     XLSX.utils.book_append_sheet(wb, ws, "Fletes");
                     
-                    // Generar el archivo Excel
                     const fecha = new Date().toISOString().slice(0, 10);
                     const searchSuffix = searchTerm ? `_busqueda_${searchTerm}` : '';
                     XLSX.writeFile(wb, `fletes_${conductor}${searchSuffix}_${fecha}.xlsx`);
@@ -1251,17 +1324,22 @@
 
                 // Event listeners para la búsqueda
                 document.getElementById('search-btn').addEventListener('click', function() {
-                    searchTerm = document.getElementById('search-input').value.trim();
-                    renderizarTabla();
+                    const searchInput = document.getElementById('search-input');
+                    if (searchInput) {
+                        searchTerm = searchInput.value.trim();
+                        renderizarTabla();
+                    }
                 });
                 
                 document.getElementById('clear-search-btn').addEventListener('click', function() {
-                    document.getElementById('search-input').value = '';
-                    searchTerm = '';
-                    renderizarTabla();
+                    const searchInput = document.getElementById('search-input');
+                    if (searchInput) {
+                        searchInput.value = '';
+                        searchTerm = '';
+                        renderizarTabla();
+                    }
                 });
                 
-                // Permitir búsqueda al presionar Enter
                 document.getElementById('search-input').addEventListener('keyup', function(e) {
                     if (e.key === 'Enter') {
                         searchTerm = this.value.trim();
@@ -1272,15 +1350,11 @@
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    // Obtener la fecha en zona horaria de Colombia
                     const fechaInput = document.getElementById('fecha').value;
                     if (!fechaInput) {
                         mostrarNotificacion('Por favor ingrese una fecha', 'error');
                         return;
                     }
-                    
-                    const fechaColombia = obtenerFechaColombia(fechaInput + 'T00:00:00-05:00');
-                    const fechaISO = fechaColombia.toISOString().split('T')[0];
                     
                     const nuevoFlete = {
                         fecha: fechaInput,
@@ -1292,8 +1366,10 @@
                         cajas: parseInt(document.getElementById('cajas').value) || 1,
                         domicilios: parseInt(document.getElementById('domicilios').value) || 1,
                         precio: parseFloat(document.getElementById('precio').value) || 0,
+                        cargue: document.getElementById('cargue') ? document.getElementById('cargue').checked : true,
+                        descargue: document.getElementById('descargue') ? document.getElementById('descargue').checked : true,
                         observacion: document.getElementById('observacion').value.trim(),
-                        estado: 'pendiente' // Estado por defecto al crear un nuevo flete
+                        estado: 'pendiente'
                     };
 
                     if (!nuevoFlete.fecha || !nuevoFlete.documento || !nuevoFlete.transportador || 
@@ -1316,14 +1392,19 @@
                         mostrarNotificacion('Flete registrado correctamente', 'success');
                     }
 
-                    // Ordenar y guardar
                     ordenarFletes();
                     localStorage.setItem(`fletes_${conductor}`, JSON.stringify(fletes));
                     form.reset();
+                    
+                    const cargueCheck = document.getElementById('cargue');
+                    const descargueCheck = document.getElementById('descargue');
+                    if (cargueCheck) cargueCheck.checked = true;
+                    if (descargueCheck) descargueCheck.checked = true;
+                    
                     renderizarTabla();
                     
                     document.querySelector('button[type="submit"]').innerHTML = `
-                        <i class="fas fa-save"></i> Guardar Flete
+                        <i class="fas fa-save"></i> Registrar Flete
                     `;
                 });
 
